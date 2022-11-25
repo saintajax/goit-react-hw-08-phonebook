@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFilteredContacts, selectIsLoading } from 'redux/selectors';
+import { selectFilteredContacts } from 'redux/selectors';
 import { deleteContact, fetchContacts } from 'redux/operations';
 import { Button, Table } from 'react-bootstrap';
 import { Box } from 'components/Box/Box';
@@ -8,7 +8,7 @@ import { Filter } from 'components/Filter/Filter';
 
 export const ContactsList = () => {
   const contacts = useSelector(selectFilteredContacts);
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
