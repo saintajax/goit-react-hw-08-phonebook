@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/6.6566f8ae.chunk.js","mappings":"+MAEe,SAASA,IACtB,OAAO,SAAC,IAAD,GACR,C","sources":["pages/loginPage/Login.jsx"],"sourcesContent":["import { LoginForm } from 'components/LoginForm/LoginForm';\n\nexport default function LoginPage() {\n  return <LoginForm />;\n}\n"],"names":["LoginPage"],"sourceRoot":""}
