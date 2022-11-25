@@ -4,53 +4,36 @@ import {
   ErrBox,
   StyledForm,
   StyledIconMan,
-  StyledIconPhone,
+  StyledIconPW,
   StyledInput,
   StyledLable,
   StyledWrapper,
-} from './ContactForm.styled';
+} from './LoginForm.styled';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/operations';
 import { Box } from 'components/Box/Box';
 import { Button } from 'react-bootstrap';
 
-const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
-const phoneRegExp =
-  /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+import { logIn } from 'redux/Auth/authOperations';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .matches(
-      nameRegExp,
-      "*Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-    )
-    .min(3, '*Names must have at least 3 characters')
-    .max(40, "*Names can't be longer than 40 characters")
-    .required('*Name is required'),
-  // email: Yup.string()
-  //   .email('*Must be a valid email address')
-  //   .max(100, '*Email must be less than 100 characters')
-  //   .required('*Email is required'),
-  number: Yup.string()
-    .matches(
-      phoneRegExp,
-      '*Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-    )
-    .required('*Phone number required'),
+  email: Yup.string()
+    .email('*Must be a valid email address')
+    .max(100, '*Email must be less than 100 characters')
+    .required('*Email is required'),
+  password: Yup.string().required('*Password required'),
 });
 
 const initialValues = {
-  name: '',
-  number: '',
+  email: '',
+  password: '',
 };
 
-export const ContactForm = ({ handleClose }) => {
+export const LoginForm = () => {
   const handleSubmit = (values, actions) => {
     actions.setSubmitting(true);
-    dispatch(addContact(values));
+    dispatch(logIn(values));
     actions.resetForm();
     actions.setSubmitting(false);
-    handleClose();
   };
 
   const dispatch = useDispatch();
@@ -62,7 +45,7 @@ export const ContactForm = ({ handleClose }) => {
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      // pt="200px"
+      pt="200px"
     >
       <Formik
         initialValues={initialValues}
@@ -84,40 +67,41 @@ export const ContactForm = ({ handleClose }) => {
               <StyledWrapper className="mb-4" controlId="formBasicName">
                 <StyledLable>Name:</StyledLable>
                 <StyledInput
-                  type="text"
-                  name="name"
-                  placeholder="Name"
+                  type="email"
+                  name="email"
+                  placeholder="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.name}
-                  className={touched.name && errors.name ? 'error' : null}
+                  value={values.email}
+                  className={touched.email && errors.email ? 'error' : null}
                 />
-                {touched.name && errors.name ? (
-                  <ErrBox>{errors.name}</ErrBox>
+                {touched.email && errors.email ? (
+                  <ErrBox>{errors.email}</ErrBox>
                 ) : null}
               </StyledWrapper>
             </Box>
             <Box display="flex" alignItems="center">
-              <StyledIconPhone />
+              <StyledIconPW />
               <StyledWrapper className="mb-4" controlId="formBasicNumber">
-                <StyledLable>Phone number:</StyledLable>
-
+                <StyledLable>Password:</StyledLable>
                 <StyledInput
-                  type="tel"
-                  name="number"
+                  type="password"
+                  name="password"
                   placeholder="Phone number"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.number}
-                  className={touched.number && errors.number ? 'error' : null}
+                  value={values.password}
+                  className={
+                    touched.password && errors.password ? 'error' : null
+                  }
                 />
-                {touched.number && errors.number ? (
-                  <ErrBox>{errors.number}</ErrBox>
+                {touched.password && errors.password ? (
+                  <ErrBox>{errors.password}</ErrBox>
                 ) : null}
               </StyledWrapper>
             </Box>
             <Button variant="primary" type="submit" disabled={isSubmitting}>
-              Add contact
+              Login
             </Button>
           </StyledForm>
         )}

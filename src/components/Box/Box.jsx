@@ -6,6 +6,7 @@ import {
   layout,
   flexbox,
   border,
+  position,
 } from 'styled-system';
 
 export const Box = styled('div')(
@@ -14,5 +15,6 @@ export const Box = styled('div')(
   color,
   layout,
   flexbox,
-  border
+  border,
+  position
 );

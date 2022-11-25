@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+
 import { addContact, deleteContact, fetchContacts } from './operations';
 
 const initialState = {
@@ -45,6 +47,9 @@ const contactsSlice = createSlice({
       state.contacts.isLoading = false;
       state.contacts.error = null;
       state.contacts.items.push(action.payload);
+      toast.success('Contact succesfully add!', {
+        position: toast.POSITION.TOP_CENTER,
+      });
     },
     [deleteContact.fulfilled]: (state, action) => {
       state.contacts.isLoading = false;

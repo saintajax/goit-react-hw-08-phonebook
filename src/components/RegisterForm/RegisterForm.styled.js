@@ -1,5 +1,7 @@
 import { Form } from 'react-bootstrap';
-import { BsFillPersonFill, BsFillTelephoneFill } from 'react-icons/bs';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { RiLockPasswordFill } from 'react-icons/ri';
+import { MdAlternateEmail } from 'react-icons/md';
 import styled from 'styled-components';
 
 export const ErrBox = styled.div`
@@ -34,15 +36,22 @@ export const StyledInput = styled(Form.Control)`
 `;
 
 export const StyledIconMan = styled(BsFillPersonFill)`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   margin-top: 10px;
   margin-right: 10px;
 `;
 
-export const StyledIconPhone = styled(BsFillTelephoneFill)`
-  width: 24px;
-  height: 24px;
+export const StyledIconPW = styled(RiLockPasswordFill)`
+  width: 32px;
+  height: 32px;
+  margin-top: 10px;
+  margin-right: 10px;
+`;
+
+export const StyledIconEmail = styled(MdAlternateEmail)`
+  width: 32px;
+  height: 32px;
   margin-top: 10px;
   margin-right: 10px;
 `;
