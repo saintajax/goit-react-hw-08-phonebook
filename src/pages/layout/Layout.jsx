@@ -25,7 +25,7 @@ export const Layout = () => {
         <ToastContainer />
         <Navbar bg="primary" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            <Navbar.Brand href="#home">Phonebook</Navbar.Brand>
             <MainNav handleShow={handleShow} />
             {isLoggedIn ? <UserMenu /> : <AuthNav />}
           </Container>
